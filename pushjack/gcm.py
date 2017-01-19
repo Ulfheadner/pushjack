@@ -17,6 +17,8 @@ For more details regarding Google's GCM documentation, consult the following:
 """
 
 from collections import namedtuple
+from django.conf import settings
+
 import logging
 
 import requests
@@ -35,8 +37,14 @@ __all__ = (
 
 log = logging.getLogger(__name__)
 
-
-GCM_URL = 'https://android.googleapis.com/gcm/send'
+"""
+Use this attribute in your app setting for work with FCM.
+"""
+USE_FCM = getattr(settings, 'USE_FCM', True)
+if USE_FCM == True:
+    GCM_URL = 'https://fcm.googleapis.com/fcm/send'
+else:
+    GCM_URL = 'https://android.googleapis.com/gcm/send'
 
 # GCM only allows up to 1000 reg ids per bulk message.
 GCM_MAX_RECIPIENTS = 1000
