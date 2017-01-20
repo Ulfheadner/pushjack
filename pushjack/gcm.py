@@ -158,8 +158,8 @@ class GCMConnection(object):
 
         log.info("Request:\n Headers: {0}\n URL: {1}\n Message: {2}".format(
             self.session.headers, self.url, message))
-        log.info("Response: {0}", response.json())
-        
+        log.info("Response: {0}", response.text)
+
         return response
 
     def send(self, stream):
