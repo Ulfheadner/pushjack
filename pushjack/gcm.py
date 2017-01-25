@@ -152,15 +152,10 @@ class GCMConnection(object):
 
     def post(self, message):
         """Send single POST request with message to GCM server."""
-        # log.debug(('Sending GCM notification batch containing {0} bytes.'
-        #            .format(len(message))))
-        response = self.session.post(self.url, message)
-
-        log.info("Request:\n Headers: {0}\n URL: {1}\n Message: {2}".format(
-            self.session.headers, self.url, message))
-        log.info("Response: {0}".format(response.text))
-
-        return response
+        log.debug(('Sending GCM notification batch containing {0} bytes.'
+                   .format(len(message))))
+        
+        return self.session.post(self.url, message)
 
     def send(self, stream):
         """Send messages to GCM server and return list of responses."""
