@@ -132,6 +132,7 @@ class GCMClient(object):
             ids = [ids]
 
         message = GCMMessage(ids, message, **options)
+        log.info(message)
         response = self.conn.send(GCMMessageStream(message))
 
 
